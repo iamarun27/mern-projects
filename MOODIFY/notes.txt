@@ -1,0 +1,3 @@
+user - request - server for register
+sever create a token and give it to the client
+userSchema.pre('save',function(next){})
