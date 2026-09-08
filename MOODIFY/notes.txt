@@ -1,3 +1,22 @@
 user - request - server for register
 sever create a token and give it to the client
 userSchema.pre('save',function(next){})
+
+
+techystackgirl
+
+token-blacklisting
+
+
+redis k through blacklisting - high throughput
+
+ek database ek second m kite operations handle kr skta h
+
+
+
+
+
+host = square-sentient-sugar-27667.db.redis.io
+
+port = 12651 
+password = 4cnJKzR66juby00ZG45YnKh9A64SIZwK          
