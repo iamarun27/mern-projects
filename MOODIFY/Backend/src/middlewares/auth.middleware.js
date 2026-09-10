@@ -3,34 +3,71 @@ const userModel = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 const redis = require('../config/cache')
 
+// async function authUser(req, res, next) {
+//   const token = req.cookies.token;
+
+//   if (!token) {
+//     return res.status(401).json({
+//       message: "Token not provided",
+//     });
+//   }
+
+//   const isTokenBlacklisted = await redis.get(token)
+
+//   if (isTokenBlacklisted) {
+//     return res.status(401).json({
+//       mesage: "Invalid token",
+//     });
+//   }
+
+//   try {
+//     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+//     req.user = decoded;
+
+//     next();
+//   } catch (err) {
+//     return res.status(401).json({
+//       message: "Invalid token",
+//     });
+//   }
+// }
+
+
 async function authUser(req, res, next) {
-  const token = req.cookies.token;
+    try {
+        const token = req.cookies.token;
 
-  if (!token) {
-    return res.status(401).json({
-      message: "Token not provided",
-    });
-  }
+        if (!token) {
+            return res.status(401).json({
+                message: "Token not provided",
+            });
+        }
 
-  const isTokenBlacklisted = await redis.get(token)
+        const isTokenBlacklisted = await redis.get(token);
 
-  if (isTokenBlacklisted) {
-    return res.status(401).json({
-      mesage: "Invalid token",
-    });
-  }
+        if (isTokenBlacklisted) {
+            return res.status(401).json({
+                message: "Invalid token",
+            });
+        }
 
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const decoded = jwt.verify(
+            token,
+            process.env.JWT_SECRET
+        );
 
-    req.user = decoded;
+        req.user = decoded;
 
-    next();
-  } catch (err) {
-    return res.status(401).json({
-      message: "Invalid token",
-    });
-  }
+        next();
+
+    } catch (err) {
+        console.log("Auth error:", err);
+
+        return res.status(401).json({
+            message: "Invalid token",
+        });
+    }
 }
 
 module.exports = { authUser };

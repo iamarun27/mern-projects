@@ -16,7 +16,4 @@ ek database ek second m kite operations handle kr skta h
 
 
 
-host = square-sentient-sugar-27667.db.redis.io
-
-port = 12651 
-password = 4cnJKzR66juby00ZG45YnKh9A64SIZwK          
+         
