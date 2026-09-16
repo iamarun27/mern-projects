@@ -6,24 +6,22 @@ import Protected from "../features/auth/components/Protected";
 import { Navigate } from "react-router";
 
 export const router = createBrowserRouter([
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
-  },
-  {
-    path: "/",
-    element: (
-      <Protected>
-        <Dashboard />
-      </Protected>
-    ),
-  },
-  {
-    path:'/dashboard',
-    element:<Navigate to='/' replace/>
-  }
-]);
+    {
+        path: "/login",
+        element: <Login />
+    },
+    {
+        path: "/register",
+        element: <Register />
+    },
+    {
+        path: "/",
+        element: <Protected>
+            <Dashboard />
+        </Protected>
+    },
+    {
+        path: "/dashboard",
+        element: <Navigate to="/" replace />
+    }
+])
