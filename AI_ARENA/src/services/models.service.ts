@@ -11,7 +11,7 @@ export const geminiModel = new ChatGoogle({
 
 export const mistralModel = new ChatMistralAI({
   model:"mistral-medium-latest",
-  apiKey:config.MISTRAL_API_KET
+  apiKey:config.MISTRAL_API_KEY
 })
 
 export const cohereModel = new ChatCohere({
